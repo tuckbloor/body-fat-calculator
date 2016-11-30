@@ -43,7 +43,7 @@ class JacksonAndPollock7 {
             $part1 = 1.097 - (0.00046971 * $this->skin_fold);
             $part2 = 0.00000056 * $this->skin_fold_squared;
             $part3 = 0.00012828 * $this->age;
-            
+
         }
 
         $result = $part1 + $part2 - $part3;
