@@ -36,7 +36,7 @@ class JacksonAndPollock3 {
             $this->skin_fold = $this->abdomen + $this->thigh + $this->chest;
             $this->skin_fold_squared = $this->skin_fold * $this->skin_fold;
 
-            $part1 = (1.10938 - (0.0008267 * ($this->thigh + $this->chest + $this->abdomen))) ;
+            $part1 = (1.10938 - (0.0008267 * ($this->skin_fold))) ;
             $part2 = (0.0000016 * $this->skin_fold_squared);
             $part3 = (0.000257 * $this->age);
 
@@ -47,34 +47,32 @@ class JacksonAndPollock3 {
             $this->skin_fold = $this->suprailiac + $this->thigh + $this->tricep;
             $this->skin_fold_squared = $this->skin_fold * $this->skin_fold;
 
-            $part1 = (1.0994921 - (0.0009929 * ($this->thigh + $this->suprailiac + $this->tricep))) ;
+            $part1 = (1.0994921 - (0.0009929 * ($this->skin_fold))) ;
             $part2 = (0.0000023 * $this->skin_fold_squared);
             $part3 = (0.0001392 * $this->age);
 
         }
 
         $result = $part1 + $part2 - $part3;
-        $this->body_fat = 495 / $result - 450;
+        $this->body_fat = round(495 / $result - 450);
 
-        $fat = $this->fat_weight = $this->fatWeight($this->body_fat);
+        $fat = $this->fatWeight($this->body_fat);
 
         $this->leanWeight($fat);
-
-        $return['body_fat_percent']    = $this->body_fat;
-        $return['fat_weight']          = $this->fat_weight;
-        $return['lean_weight']         = $this->lean_weight;
-
-        return $return;
 
     }
 
     public function fatWeight($fat) {
-        $this->fat_weight = ($this->weight / 100) * $fat;
+
+        $this->fat_weight = round(($this->weight / 100) * $fat, 2);
         return $this->fat_weight;
+
     }
 
     public function leanWeight($fat) {
-        $this->lean_weight = $this->weight - $fat;
+
+        $this->lean_weight = round($this->weight - $fat, 2);
         return $this->lean_weight;
+
     }
 }

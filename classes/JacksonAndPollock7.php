@@ -53,28 +53,26 @@ class JacksonAndPollock7 {
 
         $result = $part1 + $part2 - $part3;
 
-        $this->body_fat = 495 / $result -450;
+        $this->body_fat = round(495 / $result -450,2);
 
-        $fat = $this->fat_weight = $this->fatWeight($this->body_fat);
+        $fat = $this->fatWeight($this->body_fat);
 
         $this->leanWeight($fat);
-
-        $return['body_fat_percent']    = $this->body_fat;
-        $return['fat_weight']          = $this->fat_weight;
-        $return['lean_weight']         = $this->lean_weight;
-
-        return $return;
 
     }
 
     public function fatWeight($fat) {
-        $this->fat_weight = ($this->weight / 100) * $fat;
+
+        $this->fat_weight = round(($this->weight / 100) * $fat,2);
         return $this->fat_weight;
+
     }
 
     public function leanWeight($fat) {
-        $this->lean_weight = $this->weight - $fat;
+
+        $this->lean_weight = round($this->weight - $fat,2);
         return $this->lean_weight;
+        
     }
 
 }
