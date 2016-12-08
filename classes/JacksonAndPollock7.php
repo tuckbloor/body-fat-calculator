@@ -53,7 +53,7 @@ class JacksonAndPollock7 {
 
         $result = $part1 + $part2 - $part3;
 
-        $this->body_fat = round(495 / $result -450,2);
+        $this->body_fat = number_format((495 / $result -450),2, '.', '');
 
         $fat = $this->fatWeight($this->body_fat);
 
@@ -63,16 +63,16 @@ class JacksonAndPollock7 {
 
     public function fatWeight($fat) {
 
-        $this->fat_weight = round(($this->weight / 100) * $fat,2);
+        $this->fat_weight = number_format(($this->weight / 100) * $fat, 2, '.', '');
         return $this->fat_weight;
 
     }
 
     public function leanWeight($fat) {
 
-        $this->lean_weight = round($this->weight - $fat,2);
+        $this->lean_weight = number_format($this->weight - $fat, 2, '.', '');
         return $this->lean_weight;
-        
+
     }
 
 }

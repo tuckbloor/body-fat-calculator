@@ -34,7 +34,9 @@ class ParilloMethod {
     public function calculate() {
 
         $sum = $this->skin_fold = $this->chest + $this->abdomen + $this->thigh + $this->bicep + $this->tricep + $this->subscapular + $this->suprailiac + $this->lowerback + $this->calf;
-        $this->body_fat = round(($sum * 27) / $this->weight, 2);
+        $this->body_fat = number_format(($sum * 27) / $this->weight, 2, '.', '');
+
+
         $fat = $this->fatWeight($this->body_fat);
         $this->leanWeight($fat);
 
@@ -42,14 +44,14 @@ class ParilloMethod {
 
     public function fatWeight($fat) {
 
-        $this->fat_weight = round(($this->weight / 100) * $fat,2);
+        $this->fat_weight = number_format(($this->weight / 100) * $fat, 2, '.', '');
         return $this->fat_weight;
 
     }
 
     public function leanWeight($fat) {
 
-        $this->lean_weight = round($this->weight - $fat,2);
+        $this->lean_weight = number_format($this->weight - $fat, 2, '.', '');
         return $this->lean_weight;
 
     }
